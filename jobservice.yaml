@@ -1,0 +1,23 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: jobservice
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: jobservice
+  template:
+    metadata:
+      labels:
+        app: jobservice
+    spec:
+      containers:
+        - name: jobservice
+          image: registry.gitlab.com/duongnt160852/job-service:0.0.1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 4002
+      imagePullSecrets:
+        - name: duongnt-regcred
+      restartPolicy: Always

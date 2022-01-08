@@ -1,0 +1,16 @@
+apiVersion: configuration.konghq.com/v1
+kind: KongIngress
+metadata:
+  name: supportservice
+proxy:
+  path: /
+route:
+  strip_path: true
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /support-service
+        backend:
+          serviceName: supportservice
+          servicePort: 3000

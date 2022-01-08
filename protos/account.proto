@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package AccountService;
+
+service AccountService {
+  rpc auth (authRequest) returns (authResponse) {
+  }
+
+  rpc updateWorker (updateRequest) returns (updateResponse) {
+  }
+
+  rpc deleteInvitedJob (inviteJob) returns (returnMessage) {
+  }
+}
+
+message authRequest {
+  string token = 1;
+  repeated string requiredRights = 2;
+}
+
+message authResponse {
+  bool isAuth = 1;
+}
+
+message updateRequest {
+  string workerId = 1;
+  string type = 2;
+  int32 numberTask = 3;
+}
+
+message updateResponse {
+  bool success = 1;
+}
+
+message inviteJob {
+  string workerId = 1;
+  string jobId = 2;
+}
+
+message returnMessage {
+  bool success = 1;
+}

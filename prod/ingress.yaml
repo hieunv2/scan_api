@@ -1,0 +1,13 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: supportservice
+spec:
+  rules:
+  - host: api.datohost.com
+    http:
+      paths:
+      - path: /supports
+        backend:
+          serviceName: supportservice
+          servicePort: 3000

@@ -1,0 +1,28 @@
+
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: supportservice
+spec:
+  selector:
+    matchLabels:
+      app:  supportservice
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app:  supportservice
+    spec:
+      containers:
+        - name:  supportservice
+          image: registry.gitlab.com/hostingsolutions/support-services:0a0728a7be75a6d25c37f2a10bcc7cb0d2062091
+          imagePullPolicy: Always
+          # command: ["yarn start"]
+          ports:
+            - containerPort: 3000
+          envFrom:
+          - configMapRef:
+              name: supportservice-config
+      imagePullSecrets:
+        - name: regcred
+      restartPolicy: Always
